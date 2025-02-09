@@ -91,9 +91,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                   <span className="px-3 py-1 text-xs font-medium text-primary-600 bg-primary-50 rounded-full">
                     {product.category.name}
                   </span>
-                  <span className="px-3 py-1 text-xs font-medium text-primary-600 bg-primary-50 rounded-full">
-                    {product.material.name}
-                  </span>
                 </div>
                 <h1 className="text-3xl font-bold tracking-tight text-gray-900">
                   {product.name}
@@ -124,7 +121,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                     </li>
                     <li className="flex items-center space-x-2 text-gray-600">
                       <span className="text-primary-500">•</span>
-                      <span>Premium {product.material.name} material</span>
+                      <span>Premium quality material</span>
                     </li>
                     <li className="flex items-center space-x-2 text-gray-600">
                       <span className="text-primary-500">•</span>

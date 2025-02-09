@@ -5,7 +5,6 @@ import { Product } from "@prisma/client";
 interface ProductCardProps {
   product: Product & {
     category: { name: string };
-    material: { name: string };
   };
 }
 
@@ -28,9 +27,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
         </Link>
-        <p className="text-sm text-gray-500">
-          {product.category.name} • {product.material.name}
-        </p>
+        <p className="text-sm text-gray-500">{product.category.name}</p>
         <p className="text-lg font-semibold text-primary-600">
           ${product.price.toString()}
         </p>

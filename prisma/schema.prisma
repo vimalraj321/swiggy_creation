@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,54 +11,55 @@ datasource db {
 }
 
 model Product {
-  id          String      @id @default(cuid())
+  id          String     @id @default(cuid())
   name        String
   description String
-  price       Decimal     @db.Decimal(10, 2)
-  images      String[]
-  category    Category    @relation(fields: [categoryId], references: [id])
+  price       Float
+  stock       Int
+  status      String     @default("In Stock") // "In Stock", "Low Stock", "Out of Stock"
+  images      String[]  // Stored as JSON array of URLs
+  category    Category   @relation(fields: [categoryId], references: [id])
   categoryId  String
-  material    Material    @relation(fields: [materialId], references: [id])
-  materialId  String
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  OrderItem   OrderItem[]
+  orderItems  OrderItem[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([categoryId])
 }
 
 model Category {
-  id       String    @id @default(cuid())
-  name     String
-  products Product[]
-}
-
-model Material {
-  id       String    @id @default(cuid())
-  name     String
-  products Product[]
+  id        String    @id @default(cuid())
+  name      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Order {
-  id         String      @id @default(cuid())
-  userId     String
-  status     OrderStatus @default(PENDING)
-  items      OrderItem[]
-  total      Decimal     @db.Decimal(10, 2)
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  id           String     @id @default(cuid())
+  customerName String
+  email        String
+  total        Float
+  status       String
+  items        OrderItem[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }
 
 model OrderItem {
   id        String  @id @default(cuid())
-  orderId   String
-  order     Order   @relation(fields: [orderId], references: [id])
-  productId String
-  product   Product @relation(fields: [productId], references: [id])
   quantity  Int
-  price     Decimal @db.Decimal(10, 2)
+  price     Float
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+
+  @@index([productId])
+  @@index([orderId])
 }
 
 enum OrderStatus {
-  PENDING
   PROCESSING
   SHIPPED
   DELIVERED
