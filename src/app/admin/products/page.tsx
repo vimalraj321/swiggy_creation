@@ -113,6 +113,7 @@ export default function ProductsManagement() {
       resetForm();
       fetchProducts();
     } catch (error) {
+      console.log(error);
       toast.error("Failed to save product");
     }
 
@@ -127,6 +128,7 @@ export default function ProductsManagement() {
         toast.success("Product deleted successfully!");
         fetchProducts();
       } catch (error) {
+        console.log(error);
         toast.error("Failed to delete product");
       }
       setIsLoading(false);
@@ -178,6 +180,7 @@ export default function ProductsManagement() {
         images: [...prev.images, ...data.urls],
       }));
     } catch (error) {
+      console.log(error);
       toast.error("Failed to upload images");
     }
   };

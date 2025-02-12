@@ -19,7 +19,7 @@ export async function getOrders() {
       },
     });
     return { orders };
-  } catch (error) {
+  } catch {
     return { error: "Failed to fetch orders" };
   }
 }
@@ -37,7 +37,7 @@ export async function getOrder(id: string) {
       },
     });
     return { order };
-  } catch (error) {
+  } catch {
     return { error: "Failed to fetch order" };
   }
 }
@@ -50,7 +50,7 @@ export async function updateOrderStatus(id: string, status: OrderStatus) {
     });
     revalidatePath("/admin/orders");
     return { order };
-  } catch (error) {
+  } catch {
     return { error: "Failed to update order status" };
   }
 }
@@ -68,7 +68,7 @@ export async function createOrder(data: {
     const order = await prisma.order.create({
       data: {
         customerName: data.customerName,
-        customerEmail: data.customerEmail,
+        email: data.customerEmail,
         status: OrderStatus.PROCESSING,
         total: data.items.reduce(
           (acc, item) => acc + item.price * item.quantity,
@@ -109,7 +109,7 @@ export async function createOrder(data: {
 
     revalidatePath("/admin/orders");
     return { order };
-  } catch (error) {
+  } catch {
     return { error: "Failed to create order" };
   }
 }

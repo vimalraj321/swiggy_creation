@@ -1,7 +1,6 @@
 import { getProducts } from "./actions/product";
 import ProductCard from "../components/ProductCard";
 import Link from "next/link";
-import Image from "next/image";
 
 export default async function HomePage() {
   const { products } = await getProducts();

@@ -1,14 +1,5 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { Order, OrderItem, Product } from "@prisma/client";
-
-interface OrderWithRelations extends Order {
-  customerName: string;
-  email: string;
-  items: (OrderItem & {
-    product: Pick<Product, "name">;
-  })[];
-}
 
 export async function GET() {
   try {

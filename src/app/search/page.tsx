@@ -1,6 +1,5 @@
 import ProductCard from "@/components/ProductCard";
 import { prisma } from "@/lib/prisma";
-import Image from "next/image";
 import Link from "next/link";
 
 async function searchProducts(query: string) {
@@ -25,9 +24,10 @@ async function searchProducts(query: string) {
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { q: string };
+  searchParams: Promise<{ q: string }>;
 }) {
-  const query = searchParams.q || "";
+  const { q } = await searchParams;
+  const query = q || "";
   const products = await searchProducts(query);
 
   return (
@@ -47,13 +47,7 @@ export default async function SearchPage({
 
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {products.map((product) => (
-          <Link
-            key={product.id}
-            href={`/products/${product.id}`}
-            className="group relative"
-          >
-            <ProductCard product={product} />
-          </Link>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
 

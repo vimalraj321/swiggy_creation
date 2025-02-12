@@ -27,7 +27,7 @@ export default function CategoriesManagement() {
       const response = await fetch("/api/categories");
       const data = await response.json();
       setCategories(data);
-    } catch (error) {
+    } catch {
       toast.error("Failed to fetch categories");
     }
     setIsLoading(false);
@@ -41,7 +41,7 @@ export default function CategoriesManagement() {
       if (selectedCategory) {
         // Update
         const response = await fetch(`/api/categories/${selectedCategory.id}`, {
-          method: "PUT",
+          method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name }),
         });
@@ -62,7 +62,7 @@ export default function CategoriesManagement() {
       setSelectedCategory(null);
       setName("");
       fetchCategories();
-    } catch (error) {
+    } catch {
       toast.error("Failed to save category");
     }
 
@@ -81,12 +81,12 @@ export default function CategoriesManagement() {
     setIsLoading(true);
     try {
       const response = await fetch(`/api/categories/${id}`, {
-        method: "DELETE",
+        method: "POST",
       });
       if (!response.ok) throw new Error("Failed to delete category");
       toast.success("Category deleted successfully!");
       fetchCategories();
-    } catch (error) {
+    } catch {
       toast.error("Failed to delete category");
     }
     setIsLoading(false);

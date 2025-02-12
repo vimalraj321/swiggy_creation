@@ -1,18 +1,20 @@
 import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const { name } = await request.json();
     const category = await prisma.category.update({
-      where: { id: params.id },
+      where: { id },
       data: { name },
     });
     return NextResponse.json(category);
-  } catch (error) {
+  } catch (err) {
+    console.error("Failed to update category:", err);
     return NextResponse.json(
       { error: "Failed to update category" },
       { status: 500 }
@@ -21,15 +23,17 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await prisma.category.delete({
-      where: { id: params.id },
+      where: { id },
     });
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (err) {
+    console.error("Failed to delete category:", err);
     return NextResponse.json(
       { error: "Failed to delete category" },
       { status: 500 }

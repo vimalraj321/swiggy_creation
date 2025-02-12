@@ -1,17 +1,14 @@
 import { getProduct } from "@/app/actions/product";
-import Image from "next/image";
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import ProductDetails from "./ProductDetails";
 
 interface ProductPageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { product, error } = await getProduct(params.id);
+  const { id } = await params;
+  const { product, error } = await getProduct(id);
 
   if (error || !product) {
     return (
@@ -21,7 +18,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             Product Not Found
           </h1>
           <p className="text-gray-600">
-            The product you're looking for doesn't exist or has been removed.
+            {`The product you're looking for doesn't exist or has been removed.`}
           </p>
           <Link
             href="/products"

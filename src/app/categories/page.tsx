@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import Link from "next/link";
 import { Category, Product } from "@prisma/client";
 import ProductCard from "@/components/ProductCard";
 
@@ -36,12 +35,6 @@ export default async function CategoriesPage() {
               <h2 className="text-2xl font-semibold text-primary-800">
                 {category.name}
               </h2>
-              {/* <Link
-                href={`/categories/${category.id}`}
-                className="text-primary-600 hover:text-primary-700 font-medium"
-              >
-                View All
-              </Link> */}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

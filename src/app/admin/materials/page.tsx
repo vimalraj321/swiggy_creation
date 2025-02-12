@@ -28,6 +28,7 @@ export default function MaterialsManagement() {
       const data = await response.json();
       setMaterials(data);
     } catch (error) {
+      console.log(error);
       toast.error("Failed to fetch materials");
     }
     setIsLoading(false);
@@ -63,6 +64,7 @@ export default function MaterialsManagement() {
       setName("");
       fetchMaterials();
     } catch (error) {
+      console.log(error);
       toast.error("Failed to save material");
     }
 
@@ -87,6 +89,7 @@ export default function MaterialsManagement() {
       toast.success("Material deleted successfully!");
       fetchMaterials();
     } catch (error) {
+      console.log(error);
       toast.error("Failed to delete material");
     }
     setIsLoading(false);

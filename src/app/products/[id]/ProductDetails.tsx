@@ -131,7 +131,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               <div className="space-y-6">
                 <div className="flex flex-col space-y-4">
                   <h2 className="text-lg font-semibold text-gray-900">
-                    💫 Why you'll love it
+                    💫 Why you&apos;ll love it
                   </h2>
                   <ul className="space-y-2">
                     <li className="flex items-center space-x-2 text-gray-600">

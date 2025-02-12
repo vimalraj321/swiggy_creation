@@ -39,7 +39,7 @@ export default function InventoryManagement() {
       if (result.products) {
         setProducts(result.products);
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to fetch products");
     }
     setIsLoading(false);
@@ -50,7 +50,7 @@ export default function InventoryManagement() {
       const response = await fetch("/api/categories");
       const data = await response.json();
       setCategories(data);
-    } catch (error) {
+    } catch {
       toast.error("Failed to fetch categories");
     }
   };
@@ -69,7 +69,7 @@ export default function InventoryManagement() {
       setNewCategoryName("");
       setIsCategoryModalOpen(false);
       fetchCategories();
-    } catch (error) {
+    } catch {
       toast.error("Failed to create category");
     }
   };
@@ -79,7 +79,7 @@ export default function InventoryManagement() {
       await updateProduct(id, { stock: newStock });
       toast.success("Stock updated successfully!");
       fetchProducts();
-    } catch (error) {
+    } catch {
       toast.error("Failed to update stock");
     }
   };
