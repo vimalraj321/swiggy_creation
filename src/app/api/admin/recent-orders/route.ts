@@ -4,7 +4,7 @@ import { Order, OrderItem, Product } from "@prisma/client";
 
 interface OrderWithRelations extends Order {
   customerName: string;
-  customerEmail: string;
+  email: string;
   items: (OrderItem & {
     product: Pick<Product, "name">;
   })[];
@@ -22,7 +22,7 @@ export async function GET() {
         total: true,
         status: true,
         customerName: true,
-        customerEmail: true,
+        email: true,
         items: {
           include: {
             product: {

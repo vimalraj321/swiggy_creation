@@ -15,7 +15,7 @@ export default async function HomePage() {
         <div className="relative mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8">
           <div className="max-w-2xl text-center sm:mx-auto">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl animate-fade-in">
-              Welcome to Swiggy Creation 💝
+              Welcome to Sugi Creation 💝
             </h1>
             <p className="mt-6 text-xl text-white/90 animate-slide-up">
               Discover our exquisite collection of handcrafted jewelry that
@@ -34,7 +34,7 @@ export default async function HomePage() {
       </div>
 
       {/* Featured Section */}
-      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pt-24 sm:px-6 lg:px-8">
         <div className="text-center">
           <span className="inline-block animate-bounce mb-2">✨</span>
           <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary-600 to-primary-400 text-transparent bg-clip-text">
@@ -68,7 +68,7 @@ export default async function HomePage() {
       </div>
 
       {/* Categories */}
-      <div className="bg-gradient-to-b from-white to-primary-50">
+      {/* <div className="bg-gradient-to-b from-white to-primary-50">
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             <span className="inline-block animate-pulse mb-2">💝</span>
@@ -117,14 +117,14 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Social Proof */}
-      <div className="bg-white py-24">
+      <div className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block animate-spin-slow mb-2">💫</span>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-            #SwiggyCreation
+            #SugiCreation
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-500">
             Join our community of happy customers sharing their favorite pieces

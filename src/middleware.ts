@@ -25,7 +25,7 @@ export function middleware(request: NextRequest) {
     const [username, password] = credentials.split(":");
 
     // Check credentials (replace with your desired username/password)
-    if (username !== "admin" || password !== "swiggy2024") {
+    if (username !== "admin" || password !== "sugi2024") {
       return new NextResponse(null, {
         status: 401,
         headers: {

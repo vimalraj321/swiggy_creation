@@ -13,7 +13,7 @@ interface DashboardStats {
 interface RecentOrder {
   id: string;
   customerName: string;
-  customerEmail: string;
+  email: string;
   total: number;
   status: OrderStatus;
   items: {
@@ -220,9 +220,7 @@ export default function AdminDashboard() {
                     <div className="text-sm font-medium text-gray-900">
                       {order.customerName}
                     </div>
-                    <div className="text-sm text-gray-500">
-                      {order.customerEmail}
-                    </div>
+                    <div className="text-sm text-gray-500">{order.email}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {order.items.map((item) => item.product.name).join(", ")}

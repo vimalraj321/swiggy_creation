@@ -10,29 +10,44 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          50: "#fdf2f8",
-          100: "#fce7f3",
-          200: "#fbcfe8",
-          300: "#f9a8d4",
-          400: "#f472b6",
-          500: "#ec4899",
-          600: "#db2777",
-          700: "#be185d",
-          800: "#9d174d",
-          900: "#831843",
+          50: "#FDF2F8", // Lightest pink - backgrounds
+          100: "#FCE7F3", // Light pink - secondary backgrounds
+          200: "#FBCFE8", // Borders
+          300: "#F9A8D4", // Muted text
+          400: "#F472B6", // Secondary text
+          500: "#EC4899", // Primary text
+          600: "#DB2777", // Primary buttons/links
+          700: "#BE185D", // Hover states
+          800: "#9D174D", // Headings
+          900: "#831843", // Dark text
         },
         secondary: {
-          50: "#f8fafc",
-          100: "#f1f5f9",
-          200: "#e2e8f0",
-          300: "#cbd5e1",
-          400: "#94a3b8",
-          500: "#64748b",
-          600: "#475569",
-          700: "#334155",
-          800: "#1e293b",
-          900: "#0f172a",
+          50: "#FFF5F5",
+          100: "#FED7D7",
+          200: "#FEB2B2",
+          300: "#FC8181",
+          400: "#F56565",
+          500: "#E53E3E",
+          600: "#C53030",
+          700: "#9B2C2C",
+          800: "#822727",
+          900: "#63171B",
         },
+        accent: {
+          50: "#F0FDF4",
+          100: "#DCFCE7",
+          200: "#BBF7D0",
+          300: "#86EFAC",
+          400: "#4ADE80",
+          500: "#22C55E",
+          600: "#16A34A",
+          700: "#15803D",
+          800: "#166534",
+          900: "#14532D",
+        },
+      },
+      boxShadow: {
+        soft: "0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)",
       },
     },
   },

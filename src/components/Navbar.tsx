@@ -1,19 +1,35 @@
+"use client";
+
 import Link from "next/link";
 import CartButton from "./CartButton";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary-100 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <span className="text-2xl">💝</span>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 text-transparent bg-clip-text">
-                Swiggy Creation
+              <span className="text-xl font-bold text-primary-600">
+                Sugi Creation
               </span>
-              <span className="text-xs text-gray-500">Jewelry Collection</span>
+              <span className="text-xs text-primary-500">
+                Jewelry Collection
+              </span>
             </div>
           </Link>
 
@@ -21,53 +37,62 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/products"
-              className="text-gray-600 hover:text-primary-600 hover-underline font-medium"
+              className="text-primary-600 hover:text-primary-700 font-medium transition-colors"
             >
               Shop
             </Link>
             <Link
               href="/categories"
-              className="text-gray-600 hover:text-primary-600 hover-underline font-medium"
+              className="text-primary-600 hover:text-primary-700 font-medium transition-colors"
             >
               Categories
             </Link>
-            <Link
-              href="/trending"
-              className="text-gray-600 hover:text-primary-600 hover-underline font-medium"
-            >
-              New Arrivals
-            </Link>
           </div>
 
-          {/* Right Section */}
+          {/* Search and Cart */}
           <div className="flex items-center space-x-4">
-            <button className="p-2 text-gray-600 hover:text-primary-600 transition-colors">
-              <span className="sr-only">Search</span>
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            <form
+              onSubmit={handleSearch}
+              className="hidden md:flex items-center"
+            >
+              <input
+                type="search"
+                placeholder="Search products..."
+                className="px-4 py-1 rounded-full bg-white border border-primary-200 text-primary-900 placeholder-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="p-2 text-primary-600 hover:text-primary-700 transition-colors"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </button>
+                <span className="sr-only">Search</span>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </button>
+            </form>
             <CartButton />
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <div className="md:hidden border-t border-gray-100">
+      <div className="md:hidden border-t border-primary-200">
         <div className="flex justify-around py-2">
           <Link
             href="/products"
-            className="flex flex-col items-center p-2 text-gray-600 hover:text-primary-600"
+            className="flex flex-col items-center p-2 text-primary-600 hover:text-primary-700"
           >
             <svg
               className="w-6 h-6"
@@ -86,7 +111,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/categories"
-            className="flex flex-col items-center p-2 text-gray-600 hover:text-primary-600"
+            className="flex flex-col items-center p-2 text-primary-600 hover:text-primary-700"
           >
             <svg
               className="w-6 h-6"
@@ -103,9 +128,9 @@ export default function Navbar() {
             </svg>
             <span className="text-xs mt-1">Categories</span>
           </Link>
-          <Link
-            href="/trending"
-            className="flex flex-col items-center p-2 text-gray-600 hover:text-primary-600"
+          <button
+            onClick={() => document.getElementById("mobileSearch")?.focus()}
+            className="flex flex-col items-center p-2 text-primary-600 hover:text-primary-700"
           >
             <svg
               className="w-6 h-6"
@@ -117,12 +142,22 @@ export default function Navbar() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-            <span className="text-xs mt-1">New In</span>
-          </Link>
+            <span className="text-xs mt-1">Search</span>
+          </button>
         </div>
+        <form onSubmit={handleSearch} className="px-4 pb-2">
+          <input
+            id="mobileSearch"
+            type="search"
+            placeholder="Search products..."
+            className="w-full px-4 py-2 rounded-full bg-white border border-primary-200 text-primary-900 placeholder-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </form>
       </div>
     </nav>
   );

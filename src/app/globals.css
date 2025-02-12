@@ -142,13 +142,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #171717;
     --primary: #ec4899;
     --primary-light: #f9a8d4;
     --primary-dark: #be185d;
-    --secondary: #831843;
-    --accent: #500724;
+    --secondary: #fdf2f8;
+    --accent: #fbcfe8;
   }
 }
 
@@ -168,6 +168,6 @@ body {
   }
 
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6;
+    @apply bg-white rounded-xl shadow-soft p-6;
   }
 }
