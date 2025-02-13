@@ -10,6 +10,56 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_token     String? @db.Text
+
+  user Member @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         Member   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Member {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  role          String    @default("user")
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
 model Product {
   id          String     @id @default(cuid())
   name        String
@@ -17,7 +67,7 @@ model Product {
   price       Float
   stock       Int
   status      String     @default("In Stock") // "In Stock", "Low Stock", "Out of Stock"
-  images      String[]  // Stored as JSON array of URLs
+  images      String[]   // Stored as JSON array of URLs
   category    Category   @relation(fields: [categoryId], references: [id])
   categoryId  String
   orderItems  OrderItem[]

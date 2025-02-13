@@ -6,11 +6,22 @@
     "dev": " next dev --turbopack",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create-admin": "ts-node --project tsconfig.json -r tsconfig-paths/register src/scripts/create-admin.ts",
+    "check-admin": "ts-node --project tsconfig.json -r tsconfig-paths/register src/scripts/check-admin.ts",
+    "update-admin": "ts-node --project tsconfig.json -r tsconfig-paths/register src/scripts/update-admin.ts",
+    "list-users": "ts-node --project tsconfig.json -r tsconfig-paths/register src/scripts/list-users.ts",
+    "delete-user": "ts-node --project tsconfig.json -r tsconfig-paths/register src/scripts/delete-user.ts"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.7.4",
     "@prisma/client": "6.3.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.8",
+    "bcryptjs": "^3.0.0",
+    "jsonwebtoken": "^9.0.2",
     "next": "15.1.6",
+    "next-auth": "5.0.0-beta.25",
     "prisma": "^6.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -25,6 +36,8 @@
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0"
   }
 }
