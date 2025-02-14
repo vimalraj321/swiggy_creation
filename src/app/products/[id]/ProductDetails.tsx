@@ -190,17 +190,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     : "Add to Bag 🛍️"}
                 </button>
               </div>
-
-              {/* Social Proof */}
-              <div className="pt-6 mt-6 border-t border-primary-100">
-                <div className="flex items-center justify-between text-sm text-gray-500">
-                  <div className="flex items-center space-x-1">
-                    <span>⭐⭐⭐⭐⭐</span>
-                    <span>(4.9/5)</span>
-                  </div>
-                  <span>1.2k+ happy customers</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

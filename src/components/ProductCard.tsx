@@ -12,13 +12,14 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="group relative bg-white rounded-2xl shadow-soft hover:shadow-xl transition-all duration-300">
       <Link href={`/products/${product.id}`} className="block">
-        <div className="aspect-square w-full overflow-hidden rounded-t-2xl bg-gray-100">
+        <div className="aspect-video w-full overflow-hidden rounded-t-2xl bg-gray-100">
           <Image
             src={product.images[0]}
             alt={product.name}
+            objectFit="cover"
             width={500}
             height={500}
-            className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
+            className="object-cover object-center transition-transform duration-300 group-hover:scale-105 w-full"
           />
           {/* <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity group-hover:opacity-100" /> */}
         </div>

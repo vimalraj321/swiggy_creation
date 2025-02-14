@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ImageUpload from "@/components/ImageUpload";
+import { CloudinaryImageUpload } from "@/components/cloudinary-image-upload";
 
 export default function AddProductPage() {
   const router = useRouter();
@@ -200,7 +201,8 @@ export default function AddProductPage() {
             Product Images
           </label>
           <div className="space-y-4">
-            <ImageUpload onUpload={handleImageUpload} className="w-full" />
+            <CloudinaryImageUpload />
+            {/* <ImageUpload onUpload={handleImageUpload} className="w-full" /> */}
             {formData.images.length > 0 && (
               <div className="grid grid-cols-2 gap-4">
                 {formData.images.map((url, index) => (
