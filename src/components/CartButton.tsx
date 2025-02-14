@@ -5,6 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "./CartProvider";
 
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(price);
+};
+
 export default function CartButton() {
   const [isOpen, setIsOpen] = useState(false);
   const { items, totalItems, totalPrice, removeItem, updateQuantity } =
@@ -82,7 +90,7 @@ export default function CartButton() {
                           {item.name}
                         </h4>
                         <p className="mt-1 text-sm text-primary-600">
-                          ${item.price.toFixed(2)}
+                          {formatPrice(item.price)}
                         </p>
                         <div className="mt-2 flex items-center gap-2">
                           <button
@@ -132,7 +140,7 @@ export default function CartButton() {
                 <div className="flex justify-between py-4 border-t border-gray-100">
                   <span className="font-semibold text-gray-900">Total</span>
                   <span className="font-semibold text-primary-600">
-                    ${totalPrice.toFixed(2)}
+                    {formatPrice(totalPrice)}
                   </span>
                 </div>
 

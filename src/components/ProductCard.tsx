@@ -2,6 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@prisma/client";
 
+// Add currency formatter
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(price);
+};
+
 interface ProductCardProps {
   product: Product & {
     category: { name: string };
@@ -30,7 +39,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.category.name}
           </span>
           <span className="text-sm font-semibold text-gray-900">
-            ${product.price.toFixed(2)}
+            {formatPrice(product.price)}
           </span>
         </div>
         <Link href={`/products/${product.id}`}>

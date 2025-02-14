@@ -5,6 +5,15 @@ import Image from "next/image";
 import { useCart } from "@/components/CartProvider";
 import { toast } from "react-hot-toast";
 
+// Add currency formatter
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(price);
+};
+
 interface Product {
   id: string;
   name: string;
@@ -115,7 +124,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                   {product.name}
                 </h1>
                 <p className="text-2xl font-bold text-primary-600">
-                  ${product.price.toFixed(2)}
+                  {formatPrice(product.price)}
                 </p>
               </div>
 

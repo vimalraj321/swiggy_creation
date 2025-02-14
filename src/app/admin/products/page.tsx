@@ -26,6 +26,14 @@ interface Product {
   category: Category;
 }
 
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(price);
+};
+
 export default function ProductsManagement() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -319,7 +327,7 @@ export default function ProductsManagement() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        ₹{product.price.toFixed(2)}
+                        {formatPrice(product.price)}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
